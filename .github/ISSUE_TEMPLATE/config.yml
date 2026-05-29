@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: OWASP Slack
+    url: https://owasp.slack.com
+    about: Join the OWASP Slack workspace to discuss the TCASVS with the community

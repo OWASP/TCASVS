@@ -1,9 +1,13 @@
-name: Convert Markdown to PDF and Create Release
+name: Build and Release TCASVS
 
 on:
   push:
     branches:
       - main
+    paths:
+      - '1.0/en/**'
+      - '1.0/tools/**'
+      - '1.0/Makefile'
 
 jobs:
   build:
@@ -11,23 +15,37 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v6
+      uses: actions/checkout@v4
 
-    - name: Set up Pandoc and jq
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install system dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y pandoc texlive jq
+        sudo apt-get install -y pandoc texlive-xetex texlive-fonts-recommended jq
 
-    - name: Fetch the latest release
+    - name: Install Python dependencies
+      run: pip install dicttoxml2
+
+    - name: Verify requirements parse correctly
+      working-directory: 1.0
+      run: |
+        python tools/export.py --verify-only --format json --language en
+        python tools/export.py --verify-only --format csv --language en
+
+    - name: Build all exports
+      working-directory: 1.0
+      run: make all
+
+    - name: Fetch the latest release tag
       id: fetch_latest_release
       run: |
         LATEST_TAG=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
         if [ -z "$LATEST_TAG" ] || [ "$LATEST_TAG" == "null" ]; then
-          LATEST_TAG="v0.4.0"
-        fi
-        # using this to fake/bump versions to v1.0
-        if [ "$LATEST_TAG" == "v0.4.0" ]; then
-          LATEST_TAG="v1.0"
+          LATEST_TAG="v1.0.0"
         fi
         echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
 
@@ -35,17 +53,11 @@ jobs:
       id: increment_version
       run: |
         LATEST_TAG=${{ env.LATEST_TAG }}
-        echo "Latest tag: $LATEST_TAG"
         LATEST_VERSION=${LATEST_TAG#v}
-        IFS='.' read -r major minor <<< "$LATEST_VERSION"
-        NEW_VERSION="$major.$((minor + 1))"
+        IFS='.' read -r major minor patch <<< "$LATEST_VERSION"
+        NEW_VERSION="$major.$minor.$((patch + 1))"
         NEW_TAG="v$NEW_VERSION"
-        echo "New version: $NEW_TAG"
         echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
-
-    - name: Concatenate and Convert Markdown to PDF
-      run: |
-        pandoc document/1.0/*.md -o TASVS-${{ env.NEW_TAG }}.pdf -V geometry:margin=2cm
 
     - name: Create GitHub Release
       id: create_release
@@ -54,16 +66,56 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ env.NEW_TAG }}
-        release_name: Release ${{ env.NEW_TAG }}
+        release_name: TCASVS ${{ env.NEW_TAG }}
         draft: false
         prerelease: false
 
-    - name: Upload PDF to Release
+    - name: Upload PDF
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./TASVS-${{ env.NEW_TAG }}.pdf
-        asset_name: TASVS-${{ env.NEW_TAG }}.pdf
+        asset_path: ./1.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_1.0.0_en.pdf
+        asset_name: TCASVS-${{ env.NEW_TAG }}.pdf
         asset_content_type: application/pdf
+
+    - name: Upload DOCX
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./1.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_1.0.0_en.docx
+        asset_name: TCASVS-${{ env.NEW_TAG }}.docx
+        asset_content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+    - name: Upload JSON
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./1.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_1.0.0_en.json
+        asset_name: TCASVS-${{ env.NEW_TAG }}.json
+        asset_content_type: application/json
+
+    - name: Upload CSV
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./1.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_1.0.0_en.csv
+        asset_name: TCASVS-${{ env.NEW_TAG }}.csv
+        asset_content_type: text/csv
+
+    - name: Upload CycloneDX
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./1.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_1.0.0_en.cdx.json
+        asset_name: TCASVS-${{ env.NEW_TAG }}.cdx.json
+        asset_content_type: application/json

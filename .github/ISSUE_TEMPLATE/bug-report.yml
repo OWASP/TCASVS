@@ -1,0 +1,37 @@
+name: Bug Report
+description: Report an error or inconsistency in the standard
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report an issue with the TCASVS.
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Which chapter, section, or requirement ID is affected?
+      placeholder: "e.g., V3.2.1 or 0x12-V3-Data-Storage-and-Protection.md"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the issue clearly.
+      placeholder: What is wrong and what should it say instead?
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Issue type
+      options:
+        - Incorrect requirement text
+        - Missing CWE mapping
+        - Incorrect level assignment
+        - Formatting/layout issue
+        - Broken link
+        - Other
+    validations:
+      required: true
