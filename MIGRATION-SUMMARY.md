@@ -1,6 +1,6 @@
-# TASVS → TCASVS v1.0 Migration Summary
+# TASVS → TCASVS v5.0.0 Migration Summary
 
-This document summarizes the in-place restructuring of the OWASP Thick Application Security Verification Standard from its original format (TASVS) to the new ASVS 5.0.0-aligned format (TCASVS v1.0).
+This document summarizes the in-place restructuring of the OWASP Thick Application Security Verification Standard from its original format (TASVS) to the new ASVS 5.0.0-aligned format (TCASVS v5.0.0).
 
 ## Requirement Flow
 
@@ -15,7 +15,7 @@ graph LR
         F["NETWORK<br/>14 reqs"]
     end
 
-    subgraph New["New TCASVS v1.0 — 132 requirements"]
+    subgraph New["New TCASVS v5.0.0 — 132 requirements"]
         V1["V1 Architecture<br/>19 reqs"]
         V2["V2 Build & Env<br/>27 reqs"]
         V3["V3 Data Storage<br/>20 reqs"]
@@ -46,7 +46,7 @@ graph LR
 | Requirements dropped | 1 |
 | Chapters completed | 6 / 6 |
 | Format compliance | ASVS 5.0.0 |
-| Traceability | Full ([YAML mapping](1.0/mappings/mapping_tasvs_to_tcasvs_v1.0.yml)) |
+| Traceability | Full ([YAML mapping](5.0/mappings/mapping_tasvs_to_tcasvs_v5.0.0.yml)) |
 
 ## Per-Chapter Breakdown
 
@@ -63,9 +63,9 @@ graph LR
 ## Directory Structure: Before → After
 
 ```
-BEFORE (old TASVS)                    AFTER (TCASVS v1.0)
+BEFORE (old TASVS)                    AFTER (TCASVS v5.0.0)
 ─────────────────────                 ────────────────────
-document/                             1.0/
+document/                             5.0/
 └── 1.0/                              ├── en/
     ├── 01-Foreword.md                │   ├── 0x00-Header.yaml
     ├── 02-Preface.md                 │   ├── 0x01-Frontispiece.md
@@ -81,7 +81,7 @@ document/                             1.0/
  no build pipeline, no mappings)      │   ├── 0x91-Appendix-B_References.md
                                       │   └── 0x92-Appendix-C_Contributors.md
                                       ├── mappings/
-                                      │   └── mapping_tasvs_to_tcasvs_v1.0.yml
+                                      │   └── mapping_tasvs_to_tcasvs_v5.0.0.yml
                                       ├── tools/
                                       │   ├── tcasvs.py
                                       │   ├── export.py
@@ -101,17 +101,17 @@ document/                             1.0/
 
 | Artifact | Purpose |
 |----------|---------|
-| `1.0/tools/tcasvs.py` | Parse chapters, validate format, extract requirements |
-| `1.0/tools/export.py` | Export to JSON and CSV |
-| `1.0/tools/cyclonedx.py` | Generate CycloneDX BOM for compliance tooling |
-| `1.0/Makefile` + `generate-all.sh` | Multi-format document generation (PDF, DOCX, JSON, CSV) |
+| `5.0/tools/tcasvs.py` | Parse chapters, validate format, extract requirements |
+| `5.0/tools/export.py` | Export to JSON and CSV |
+| `5.0/tools/cyclonedx.py` | Generate CycloneDX BOM for compliance tooling |
+| `5.0/Makefile` + `generate-all.sh` | Multi-format document generation (PDF, DOCX, JSON, CSV) |
 | `.github/workflows/main.yml` | CI pipeline: lint, parse, export on every push |
-| `1.0/mappings/mapping_tasvs_to_tcasvs_v1.0.yml` | Full old-to-new ID traceability (142 entries) |
+| `5.0/mappings/mapping_tasvs_to_tcasvs_v5.0.0.yml` | Full old-to-new ID traceability (142 entries) |
 
 ## What Happens Next
 
 1. Review this branch (`restructure/v5-format`)
 2. Merge to `main` after approval
 3. Run a markdown lint pass on chapter files
-4. Rename the GitHub repository from `www-project-thick-client-application-security-verification-standard` to `TCASVS`
-5. Announce the v1.0 restructuring to the OWASP community
+4. Rename the GitHub repository to `TCASVS` (in-repo references already updated to the new slug)
+5. Announce the v5.0.0 restructuring to the OWASP community

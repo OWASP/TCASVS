@@ -16,9 +16,9 @@ The repository includes a GitHub Actions workflow that automatically compiles th
 ### Using Docker
 
 ```bash
-cd 1.0
+cd 5.0
 docker run --rm -v "$(pwd):/data" pandoc/extra:latest \
-  --defaults=defaults.yaml -o TCASVS_1.0_en.pdf
+  --defaults=defaults.yaml -o TCASVS_5.0.0_en.pdf
 ```
 
 ### Using Make (when available)
@@ -37,7 +37,7 @@ The build system generates:
 ## Folder Structure
 
 ```
-1.0/
+5.0/
 ├── en/           ← Markdown source files (edit these)
 ├── mappings/     ← ID mapping from old TASVS to TCASVS
 ├── templates/    ← LaTeX and Word templates for PDF/DOCX generation

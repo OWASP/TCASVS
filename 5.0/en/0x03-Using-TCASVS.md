@@ -70,5 +70,3 @@ The TCASVS does **not** cover:
 - IoT firmware (specialized standards apply)
 
 Where thick clients communicate with backend services, the TCASVS covers the client-side implementation of that communication. Server-side security should be verified independently using the ASVS.
-
-\newpage{}

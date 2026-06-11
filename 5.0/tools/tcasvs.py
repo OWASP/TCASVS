@@ -3,7 +3,7 @@
 """TCASVS document parser and converter class.
 
 Adapted from the ASVS parser by Bernhard Mueller, Jonny Schnittger, and Josh Grossman.
-Modified for the TCASVS table format (| V1.2.3 | Description | L1 | L2 | L3 | CWE |).
+Modified for the TCASVS table format (| V1.2.3 | Description | Level | CWE | Source |).
 
 Copyright (c) 2024 OWASP Foundation
 
@@ -76,13 +76,11 @@ class TCASVS:
     def _parse_chapters(self):
         """Parse all chapter files matching the 0xNN-V pattern."""
         # Regex for the TCASVS table format:
-        # | V1.2.3 | Description text | ✓ | ✓ | ✓ | 123 |
+        # | V1.2.3 | Description text | 1 | 123 | TASVS |
         req_regex = re.compile(
             r"^\|\s*V([\d.]+)\s*\|"       # ID (e.g., V1.2.3)
             r"\s*(.*?)\s*\|"               # Description
-            r"\s*(✓?)\s*\|"               # L1
-            r"\s*(✓?)\s*\|"               # L2
-            r"\s*(✓?)\s*\|"               # L3
+            r"\s*([123]?)\s*\|"           # Level (1, 2, 3, or blank)
             r"\s*([0-9,\s]*)\s*\|"         # CWE
         )
 
@@ -137,10 +135,15 @@ class TCASVS:
                     if req_match and current_section is not None:
                         req_id = req_match.group(1)
                         description = req_match.group(2).strip()
-                        l1 = req_match.group(3).strip()
-                        l2 = req_match.group(4).strip()
-                        l3 = req_match.group(5).strip()
-                        cwe_str = req_match.group(6).strip()
+                        level_str = req_match.group(3).strip()
+                        cwe_str = req_match.group(4).strip()
+
+                        # Derive per-level applicability from the single
+                        # numeric Level column (lowest applicable level).
+                        int_level = int(level_str) if level_str.isdigit() else 99
+                        l1 = "✓" if int_level <= 1 else ""
+                        l2 = "✓" if int_level <= 2 else ""
+                        l3 = "✓" if int_level <= 3 else ""
 
                         cwe_list = [
                             int(c.strip())

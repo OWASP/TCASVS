@@ -19,4 +19,4 @@ fi
 # Python packages
 pip3 install --user dicttoxml2
 
-echo "Done. Run 'make' from the 1.0/ directory to build all outputs."
+echo "Done. Run 'make' from the 5.0/ directory to build all outputs."

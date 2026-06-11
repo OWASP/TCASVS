@@ -174,7 +174,7 @@ class TASVSConversion:
 
 
 if __name__ == "__main__":
-    repo_document_root_url = "https://raw.githubusercontent.com/OWASP/www-project-thick-client-application-security-verification-standard/main/document/1.0/"
+    repo_document_root_url = "https://raw.githubusercontent.com/OWASP/TCASVS/main/document/1.0/"
     tasvs_files = [
         ("04-TASVS-ARCH.md", "TASVS-ARCH"),
         ("05-TASVS-CODE.md", "TASVS-CODE"),
@@ -188,7 +188,7 @@ if __name__ == "__main__":
     )
 
     response = requests.get(
-        "https://api.github.com/repos/OWASP/www-project-thick-client-application-security-verification-standard/releases/latest"
+        "https://api.github.com/repos/OWASP/TCASVS/releases/latest"
     )
 
     if response.status_code == 200:

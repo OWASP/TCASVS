@@ -1,6 +1,6 @@
 #!/bin/bash
 # Generate all TCASVS output formats.
-# Run from the 1.0/ directory.
+# Run from the 5.0/ directory.
 
 set -e
 
@@ -52,4 +52,4 @@ echo "Verifying outputs..."
 make verify
 
 echo ""
-echo "Done. Outputs in 1.0/dist/"
+echo "Done. Outputs in 5.0/dist/"

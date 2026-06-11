@@ -25,5 +25,3 @@
 | TLS | Transport Layer Security — a cryptographic protocol for securing communications over a network. |
 | TPM | Trusted Platform Module — a hardware chip that provides cryptographic functions and secure key storage. |
 | UAC | User Account Control — a Windows security feature that limits application software to standard user privileges. |
-
-\newpage{}

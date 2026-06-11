@@ -7,12 +7,15 @@ We gratefully acknowledge the contributions of the following people who have hel
 | | |
 |---|---|
 | Dave Hanson ([JeffreyShran](https://github.com/JeffreyShran)) | Project Lead |
+| Samuel Aubert ([matreurai](https://github.com/matreurai)) | Project Lead |
 
 ## Core Team (Bentley Systems)
 
-| | | | |
-|---|---|---|---|
-| Samuel Aubert ([matreurai](https://github.com/matreurai)) | Einaras Bartkus ([eb-bsi](https://github.com/eb-bsi)) | Thomas Chauchefoin | John Cotter |
+| | |
+|---|---|
+| Einaras Bartkus ([eb-bsi](https://github.com/eb-bsi)) | 
+| John Cotter |
+| Thomas Chauchefoin | 
 
 ## OWASP Foundation
 
@@ -22,6 +25,4 @@ We gratefully acknowledge the contributions of the following people who have hel
 
 ## Community Contributors
 
-We thank all [contributors](https://github.com/OWASP/www-project-thick-client-application-security-verification-standard/graphs/contributors) who have submitted issues, pull requests, and feedback to improve this standard.
-
-\newpage{}
+We thank all [contributors](https://github.com/OWASP/TCASVS/graphs/contributors) who have submitted issues, pull requests, and feedback to improve this standard.

@@ -5,8 +5,8 @@ Thank you for your interest in contributing to the OWASP Thick Client Applicatio
 ## Getting Started
 
 1. [Join](http://owasp.org/slack/invite) the [OWASP Slack workspace](https://owasp.slack.com) to connect with the community.
-2. Review the standard in [`1.0/en/`](1.0/en/) to understand the current state.
-3. Check [open issues](https://github.com/OWASP/www-project-thick-client-application-security-verification-standard/issues) for tasks that need help.
+2. Review the standard in [`5.0/en/`](5.0/en/) to understand the current state.
+3. Check [open issues](https://github.com/OWASP/TCASVS/issues) for tasks that need help.
 4. Fork the repository and create a feature branch for your changes.
 
 ## How to Contribute
@@ -22,14 +22,14 @@ Thank you for your interest in contributing to the OWASP Thick Client Applicatio
 All requirements must follow the ASVS 5.0.0 format conventions:
 
 ```markdown
-| # | Description | L1 | L2 | L3 | CWE |
-|---|-------------|:--:|:--:|:--:|-----|
-| V{ch}.{sec}.{item} | Verify that... | ✓ | ✓ | ✓ | {CWE-ID} |
+| # | Description | Level | CWE |
+|---|-------------|:-----:|-----|
+| V{ch}.{sec}.{item} | Verify that... | 1 | {CWE-ID} |
 ```
 
 - **IDs** follow `V{chapter}.{section}.{item}` numbering (e.g., V1.2.3)
 - **Descriptions** start with "Verify that..."
-- **Levels** use ✓ for applicable, blank for not applicable
+- **Level** is the lowest level at which the requirement applies (`1`, `2`, or `3`)
 - **CWE** maps each requirement to a weakness identifier
 
 ### Level Definitions

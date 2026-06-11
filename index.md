@@ -16,11 +16,11 @@ The TCASVS fills the gap between the [OWASP Application Security Verification St
 
 ## How to Get It
 
-The latest version of the standard can be downloaded from the [Releases](https://github.com/OWASP/www-project-thick-client-application-security-verification-standard/releases/latest) page in PDF, DOCX, CSV, JSON, and CycloneDX formats.
+The latest version of the standard can be downloaded from the [Releases](https://github.com/OWASP/TCASVS/releases/latest) page in PDF, DOCX, CSV, JSON, and CycloneDX formats.
 
 ## Project Leaders and Working Group
 
-The project is led by [Dave Hanson](https://github.com/JeffreyShran), supported by his active AppSec team at Bentley Systems: [Samuel Aubert](https://github.com/matreurai), [Einaras Bartkus](https://github.com/eb-bsi), [Thomas Chauchefoin](https://www.linkedin.com/in/thomaschauchefoin), and [John Cotter](https://www.linkedin.com/in/john-cotter-40338612/).
+The project is led by [Dave Hanson](https://github.com/JeffreyShran) and [Samuel Aubert](https://github.com/matreurai), supported by some former and other active AppSec team members at Bentley Systems: [Einaras Bartkus](https://github.com/eb-bsi), [Thomas Chauchefoin](https://www.linkedin.com/in/thomaschauchefoin), and [John Cotter](https://www.linkedin.com/in/john-cotter-40338612/).
 
 The project is also supported by the OWASP community and the OWASP Foundation. Special thanks to [Starr Brown](https://github.com/mamicidal) for her support in her capacity as Director of Projects.
 
@@ -44,13 +44,13 @@ The project is looking for contributors to help with the following tasks:
 
 ## Special Thanks to Our Contributors
 
-The OWASP TCASVS would like to thank all of our [contributors](https://github.com/OWASP/www-project-thick-client-application-security-verification-standard/graphs/contributors) for their support and dedication to the project.
+The OWASP TCASVS would like to thank all of our [contributors](https://github.com/OWASP/TCASVS/graphs/contributors) for their support and dedication to the project.
 
 ## Sponsors
 
 <p>
   <a href="https://www.bentley.com/company/about-us/">
-    <img src="https://github.com/OWASP/www-project-thick-client-application-security-verification-standard/blob/main/assets/images/BentleyLOGO_BLK_type.jpg?raw=true" width="230" alt="Bentley Systems" />
+    <img src="https://github.com/OWASP/TCASVS/blob/main/images/BentleyLOGO_BLK_type.jpg?raw=true" width="230" alt="Bentley Systems" />
   </a>
 </p>
 

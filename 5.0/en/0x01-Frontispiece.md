@@ -6,7 +6,7 @@ The Thick Client Application Security Verification Standard is a list of applica
 
 ## Copyright and License
 
-Version 1.0, 2026
+Version 5.0.0, 2026
 
 ![license](../images/license.png)
 
@@ -16,19 +16,20 @@ This document is released under the [Creative Commons Attribution-ShareAlike 4.0
 
 ## Project Leaders
 
-- Dave Hanson
+|               |
+|---------------|
+| Dave Hanson   |
+| Samuel Aubert |
 
 ## Major Contributors
 
-- Samuel Aubert
-- Einaras Bartkus
-- Thomas Chauchefoin
-- John Cotter
+|                    |                 |
+|--------------------|-----------------|
+| Einaras Bartkus    | John Cotter     |
+| Thomas Chauchefoin |                 |
 
 ## Contributors and Reviewers
 
 The OWASP Thick Client Application Security Verification Standard is built by the community, for the community. We thank all contributors who have provided feedback, identified issues, and submitted improvements.
 
-A full list of contributors is available in the project's [GitHub repository](https://github.com/OWASP/www-project-thick-client-application-security-verification-standard/graphs/contributors).
-
-\newpage{}
+A full list of contributors is available in the project's [GitHub repository](https://github.com/OWASP/TCASVS/graphs/contributors).

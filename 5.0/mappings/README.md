@@ -1,12 +1,12 @@
 # TCASVS Mapping Files
 
-This directory contains machine-readable mappings between the original TASVS requirement IDs and the new TCASVS v1.0 structure.
+This directory contains machine-readable mappings between the original TASVS requirement IDs and the new TCASVS v5.0.0 structure.
 
 ## Files
 
 | File | Direction | Format |
 |------|-----------|--------|
-| `mapping_tasvs_to_tcasvs_v1.0.yml` | TASVS → TCASVS v1.0 | YAML |
+| `mapping_tasvs_to_tcasvs_v5.0.0.yml` | TASVS → TCASVS v5.0.0 | YAML |
 
 ## Actions
 

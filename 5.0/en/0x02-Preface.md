@@ -1,6 +1,6 @@
 # Preface
 
-## Welcome to TCASVS 1.0
+## Welcome to TCASVS 5.0.0
 
 The OWASP Thick Client Application Security Verification Standard (TCASVS) provides a comprehensive set of security requirements for designing, developing, and testing thick client applications — desktop software, native applications, and other locally-executed programs that operate outside a browser sandbox.
 
@@ -8,13 +8,14 @@ This standard fills the gap between the [OWASP Application Security Verification
 
 ## What Changed from TASVS
 
-TCASVS 1.0 represents a complete restructuring of the original Thick Application Security Verification Standard (TASVS). Key changes include:
+TCASVS 5.0.0 represents a complete restructuring of the original Thick Application Security Verification Standard (TASVS). Key changes include:
 
 - **Requirement ID format**: Adopted ASVS numbering (`V{chapter}.{section}.{item}`) replacing the old `TASVS-{CATEGORY}-{group}.{item}` scheme.
-- **Level definitions**: Clarified L1/L2/L3 applicability per requirement with explicit checkmarks, replacing the old X/blank notation.
+- **Level definitions**: Clarified L1/L2/L3 applicability per requirement using a single numeric `Level` column (the lowest applicable level), replacing the old X/blank notation.
 - **CWE traceability**: Every requirement now maps to a CWE identifier.
 - **Expanded coverage**: From 79 original requirements to over 130 across 6 chapters, with significant gap-fills for build security, memory safety, IPC, and runtime integrity.
 - **Chapter restructuring**: Reorganized into chapters that align with ASVS conventions while remaining specific to thick client threats.
+- **Version alignment**: Adopted the `5.0.0` version number to mirror OWASP ASVS 5.0.0, signalling that TCASVS shares its format, structure, and publishing pipeline. This co-versioning is a deliberate alignment choice rather than a claim of incremental releases between TASVS 1.0 and this standard.
 
 ## Chapter Structure
 
@@ -45,5 +46,3 @@ The TCASVS can be used as:
 4. **A maturity benchmark** — Teams assess their current security posture against defined levels and plan improvements.
 
 Select the appropriate level based on the application's risk profile, then verify all requirements at that level and below are met.
-
-\newpage{}

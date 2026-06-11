@@ -8,7 +8,7 @@ SOURCEDIR := en
 BUILDDIR := build
 DISTDIR := dist
 
-TARGETNAME := OWASP_Thick_Client_Application_Security_Verification_Standard_1.0.0_
+TARGETNAME := OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_
 
 # Source files
 SOURCE_FILES := $(sort $(wildcard $(SOURCEDIR)/0x*.md $(SOURCEDIR)/0x*.yaml))
