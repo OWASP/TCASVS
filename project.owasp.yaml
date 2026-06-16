@@ -1,7 +1,7 @@
 audience:
   - builder
   - defender
-  - tester
+  - breaker
 leaders:
   - name: Dave Hanson
     email: Dave.hanson@owasp.org
