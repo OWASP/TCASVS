@@ -28,7 +28,6 @@ body:
       label: Issue type
       options:
         - Incorrect requirement text
-        - Missing CWE mapping
         - Incorrect level assignment
         - Formatting/layout issue
         - Broken link

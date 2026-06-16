@@ -3,7 +3,7 @@
 """TCASVS document parser and converter class.
 
 Adapted from the ASVS parser by Bernhard Mueller, Jonny Schnittger, and Josh Grossman.
-Modified for the TCASVS table format (| V1.2.3 | Description | Level | CWE | Source |).
+Modified for the TCASVS table format (| V1.2.3 | Description | Level | Source |).
 
 Copyright (c) 2024 OWASP Foundation
 
@@ -76,12 +76,11 @@ class TCASVS:
     def _parse_chapters(self):
         """Parse all chapter files matching the 0xNN-V pattern."""
         # Regex for the TCASVS table format:
-        # | V1.2.3 | Description text | 1 | 123 | TASVS |
+        # | V1.2.3 | Description text | 1 | TASVS |
         req_regex = re.compile(
             r"^\|\s*V([\d.]+)\s*\|"       # ID (e.g., V1.2.3)
             r"\s*(.*?)\s*\|"               # Description
             r"\s*([123]?)\s*\|"           # Level (1, 2, 3, or blank)
-            r"\s*([0-9,\s]*)\s*\|"         # CWE
         )
 
         chapter_heading_regex = re.compile(r"^#\s+V(\d+)\s+(.*)")
@@ -136,7 +135,6 @@ class TCASVS:
                         req_id = req_match.group(1)
                         description = req_match.group(2).strip()
                         level_str = req_match.group(3).strip()
-                        cwe_str = req_match.group(4).strip()
 
                         # Derive per-level applicability from the single
                         # numeric Level column (lowest applicable level).
@@ -145,12 +143,6 @@ class TCASVS:
                         l2 = "✓" if int_level <= 2 else ""
                         l3 = "✓" if int_level <= 3 else ""
 
-                        cwe_list = [
-                            int(c.strip())
-                            for c in cwe_str.split(",")
-                            if c.strip().isdigit()
-                        ]
-
                         req = {
                             "Shortcode": f"V{req_id}",
                             "Ordinal": int(req_id.rsplit(".", 1)[1]),
@@ -158,7 +150,6 @@ class TCASVS:
                             "L1": {"Required": l1 == "✓", "Requirement": l1},
                             "L2": {"Required": l2 == "✓", "Requirement": l2},
                             "L3": {"Required": l3 == "✓", "Requirement": l3},
-                            "CWE": cwe_list,
                         }
 
                         current_section["Items"].append(req)
@@ -174,7 +165,6 @@ class TCASVS:
                             "level1": l1,
                             "level2": l2,
                             "level3": l3,
-                            "cwe": cwe_str,
                         })
 
             self.standard["Requirements"].append(chapter)
@@ -201,7 +191,7 @@ class TCASVS:
         writer = csv.writer(si)
         writer.writerow([
             "chapter_id", "chapter_name", "section_id", "section_name",
-            "req_id", "req_description", "level1", "level2", "level3", "cwe",
+            "req_id", "req_description", "level1", "level2", "level3",
         ])
         for req in self.flat_requirements:
             writer.writerow([
@@ -214,7 +204,6 @@ class TCASVS:
                 req["level1"],
                 req["level2"],
                 req["level3"],
-                req["cwe"],
             ])
         return si.getvalue()
 

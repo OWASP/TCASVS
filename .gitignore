@@ -4,3 +4,7 @@
 _site/
 __pycache__/
 *.pyc
+
+# Generated build artifacts
+*/build/
+*/dist/

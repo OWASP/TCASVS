@@ -1,0 +1,6 @@
+# Keep shell scripts and the Docker build LF so the container entrypoint works
+# regardless of the host platform's autocrlf setting.
+*.sh text eol=lf
+docker/run.sh text eol=lf
+Dockerfile text eol=lf
+Makefile text eol=lf

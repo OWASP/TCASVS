@@ -41,9 +41,9 @@ $(BUILDDIR):
 $(DISTDIR):
 	mkdir -p $@
 
-# Transform source MD (add CWE hyperlinks, fix image paths)
+# Stage source MD for the build
 $(BUILDDIR)/%.md: $(SOURCEDIR)/%.md | $(BUILDDIR)
-	sed -E 's#(\| ?)([0-9]{2,4})( ?\|)#\1[\2](https://cwe.mitre.org/data/definitions/\2.html)\3#g' $< > $@
+	cp $< $@
 
 $(BUILDDIR)/%.yaml: $(SOURCEDIR)/%.yaml | $(BUILDDIR)
 	cp $< $@

@@ -37,12 +37,6 @@ body:
     id: rationale
     attributes:
       label: Rationale
-      description: Why is this requirement needed? Reference attack scenarios, CWEs, or real-world incidents.
+      description: Why is this requirement needed? Reference attack scenarios or real-world incidents.
     validations:
       required: true
-  - type: input
-    id: cwe
-    attributes:
-      label: CWE Mapping
-      description: Related CWE ID(s) if known.
-      placeholder: "e.g., CWE-312"

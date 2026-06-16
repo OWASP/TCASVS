@@ -14,7 +14,7 @@ Thank you for your interest in contributing to the OWASP Thick Client Applicatio
 ### Proposing New Requirements
 
 1. Open an issue describing the security concern and why it belongs in the TCASVS.
-2. Reference relevant CWE IDs, real-world attack scenarios, or industry standards.
+2. Reference real-world attack scenarios or industry standards.
 3. Propose a draft requirement following the format below.
 
 ### Requirement Format
@@ -22,15 +22,15 @@ Thank you for your interest in contributing to the OWASP Thick Client Applicatio
 All requirements must follow the ASVS 5.0.0 format conventions:
 
 ```markdown
-| # | Description | Level | CWE |
-|---|-------------|:-----:|-----|
-| V{ch}.{sec}.{item} | Verify that... | 1 | {CWE-ID} |
+| # | Description | Level | Source |
+|---|-------------|:-----:|--------|
+| V{ch}.{sec}.{item} | Verify that... | 1 | New |
 ```
 
 - **IDs** follow `V{chapter}.{section}.{item}` numbering (e.g., V1.2.3)
 - **Descriptions** start with "Verify that..."
 - **Level** is the lowest level at which the requirement applies (`1`, `2`, or `3`)
-- **CWE** maps each requirement to a weakness identifier
+- **Source** records the requirement's origin (`TASVS` for migrated, `New` for added)
 
 ### Level Definitions
 

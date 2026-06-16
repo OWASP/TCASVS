@@ -109,14 +109,6 @@ class CycloneDX:
             req["text"] = item["Description"]
         if parent_ref:
             req["parent"] = parent_ref
-        if "CWE" in item and item["CWE"]:
-            req["externalReferences"] = [
-                {
-                    "type": "reference",
-                    "url": f"https://cwe.mitre.org/data/definitions/{cwe}.html",
-                }
-                for cwe in item["CWE"]
-            ]
         return req
 
     def to_json(self):

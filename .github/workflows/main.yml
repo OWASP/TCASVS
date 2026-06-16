@@ -5,43 +5,51 @@ on:
     branches:
       - main
     paths:
-      - '5.0/en/**'
-      - '5.0/tools/**'
-      - '5.0/Makefile'
+      - '5.0/**'
+      - 'docker/**'
+      - 'Makefile'
+  pull_request:
+    paths:
+      - '5.0/**'
+      - 'docker/**'
+      - 'Makefile'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v3
       with:
-        python-version: '3.12'
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Install system dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y pandoc texlive-xetex texlive-fonts-recommended jq
-
-    - name: Install Python dependencies
-      run: pip install dicttoxml2
+    - name: Build (or pull) the document builder image
+      run: docker pull ghcr.io/owasp/tcasvs/documentbuilder:latest || docker build --pull --tag ghcr.io/owasp/tcasvs/documentbuilder:latest ./docker
 
     - name: Verify requirements parse correctly
-      working-directory: 5.0
-      run: |
-        python tools/export.py --verify-only --format json --language en
-        python tools/export.py --verify-only --format csv --language en
+      run: make verify
 
     - name: Build all exports
-      working-directory: 5.0
-      run: make all
+      run: make 5.0 FORMATS=all
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: tcasvs-5.0.0-outputs
+        path: 5.0/dist/
 
     - name: Fetch the latest release tag
       id: fetch_latest_release
+      if: github.event_name == 'push'
       run: |
         LATEST_TAG=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
         if [ -z "$LATEST_TAG" ] || [ "$LATEST_TAG" == "null" ]; then
@@ -51,6 +59,7 @@ jobs:
 
     - name: Increment version
       id: increment_version
+      if: github.event_name == 'push'
       run: |
         LATEST_TAG=${{ env.LATEST_TAG }}
         LATEST_VERSION=${LATEST_TAG#v}
@@ -61,6 +70,7 @@ jobs:
 
     - name: Create GitHub Release
       id: create_release
+      if: github.event_name == 'push'
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -71,6 +81,7 @@ jobs:
         prerelease: false
 
     - name: Upload PDF
+      if: github.event_name == 'push'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -81,6 +92,7 @@ jobs:
         asset_content_type: application/pdf
 
     - name: Upload DOCX
+      if: github.event_name == 'push'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -91,6 +103,7 @@ jobs:
         asset_content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
 
     - name: Upload JSON
+      if: github.event_name == 'push'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -101,6 +114,7 @@ jobs:
         asset_content_type: application/json
 
     - name: Upload CSV
+      if: github.event_name == 'push'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -111,6 +125,7 @@ jobs:
         asset_content_type: text/csv
 
     - name: Upload CycloneDX
+      if: github.event_name == 'push'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

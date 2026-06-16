@@ -1,0 +1,33 @@
+name: Build & Publish Document Builder Image
+
+on:
+  # Rebuild and publish when the image definition changes.
+  push:
+    branches:
+      - main
+    paths:
+      - 'docker/**'
+  # Allow manual rebuilds.
+  workflow_dispatch: {}
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    name: Build and publish
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish Docker image
+        run: |
+          docker build ./docker --tag ghcr.io/owasp/tcasvs/documentbuilder:latest
+          docker push ghcr.io/owasp/tcasvs/documentbuilder:latest

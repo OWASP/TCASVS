@@ -8,7 +8,7 @@ The Thick Client Application Security Verification Standard is a list of applica
 
 Version 5.0.0, 2026
 
-![license](../images/license.png)
+![license](images/license.png)
 
 Copyright © 2024-2026 The OWASP Foundation.
 
