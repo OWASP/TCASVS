@@ -54,6 +54,6 @@ The OWASP TCASVS would like to thank all of our [contributors](https://github.co
   </a>
 </p>
 
-**Bentley is the leading provider of infrastructure engineering software, advancing infrastructure for better quality of life and sustainability.**
+**Bentley Systems is the leading provider of infrastructure engineering software, advancing infrastructure for better quality of life and sustainability.**
 
 Visit [bentley.com](https://www.bentley.com/company/about-us/) to learn more.
