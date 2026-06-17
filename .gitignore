@@ -2,3 +2,9 @@
 /Gemfile.lock
 /favicon.ico
 _site/
+__pycache__/
+*.pyc
+
+# Generated build artifacts
+*/build/
+*/dist/

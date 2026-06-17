@@ -1,0 +1,42 @@
+name: New Requirement Proposal
+description: Propose a new security requirement for inclusion in the TCASVS
+labels: ["enhancement", "new-requirement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to propose a new requirement. Please provide enough context for the working group to evaluate the proposal.
+  - type: input
+    id: chapter
+    attributes:
+      label: Target Chapter
+      description: Which chapter should this requirement belong to?
+      placeholder: "e.g., V3 Data Storage and Protection"
+    validations:
+      required: true
+  - type: textarea
+    id: requirement
+    attributes:
+      label: Proposed Requirement
+      description: Write the requirement in TCASVS format (start with "Verify that...").
+      placeholder: "Verify that the application..."
+    validations:
+      required: true
+  - type: dropdown
+    id: level
+    attributes:
+      label: Suggested Level
+      description: At which verification level should this apply?
+      options:
+        - L1 (all applications)
+        - L2 (sensitive data)
+        - L3 (high security)
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this requirement needed? Reference attack scenarios or real-world incidents.
+    validations:
+      required: true

@@ -1,0 +1,858 @@
+# TASVS to TCASVS v5.0.0 Mapping
+# Generated from migration/mapping/ workspace files
+#
+# Format follows ASVS mapping conventions.
+# Actions: rename, move, drop, add
+---
+
+tasvs-arch-1-1:
+  action: rename
+  tcasvs-id: V1.1.1
+  cwe: 1053
+  notes: "Reworded: \"low fidelity\" is subjective; replaced with minimum content requirements"
+
+tasvs-arch-1-2:
+  action: rename
+  tcasvs-id: V1.1.2
+  cwe: 1053
+  notes: "Reworded: made \"high fidelity\" concrete with DFDs, classification, and mitigations"
+
+tasvs-arch-1-3:
+  action: rename
+  tcasvs-id: V1.1.3
+  cwe: 1053
+  notes: Reworded for precision; kept L2/L3
+
+tasvs-arch-1-4:
+  action: rename
+  tcasvs-id: V1.2.1
+  cwe: 1053
+  notes: Moved to Process section; added ownership of mitigations
+
+tasvs-arch-1-5:
+  action: rename
+  tcasvs-id: V1.1.4
+  cwe: 1053
+  notes: "Reworded: made \"checked-in\" concrete with versioning and review expectations"
+
+tasvs-arch-1-6:
+  action: rename
+  tcasvs-id: V1.2.2
+  cwe: 1053
+  notes: "Reworded: added trigger-based updates (not just time-based)"
+
+new-V1.1.5:
+  action: add
+  tcasvs-id: V1.1.5
+  cwe: 501
+  rationale: "Gap: trust boundaries are the foundation of thick-client security analysis"
+
+new-V1.1.6:
+  action: add
+  tcasvs-id: V1.1.6
+  cwe: 319
+  rationale: "Gap: thick clients move data across many boundary types (memory→disk, process→process, client→server)"
+
+new-V1.2.3:
+  action: add
+  tcasvs-id: V1.2.3
+  cwe: 1053
+  rationale: "Gap: threat models drift from implementation; L3 requires verification"
+
+new-V1.2.4:
+  action: add
+  tcasvs-id: V1.2.4
+  cwe: 1053
+  rationale: "Gap: threat models must drive test coverage, not just exist as documents"
+
+new-V1.3.1:
+  action: add
+  tcasvs-id: V1.3.1
+  cwe: 250
+  rationale: "Gap: thick clients often use multi-process privilege separation (broker + renderer, service + UI)"
+
+new-V1.3.2:
+  action: add
+  tcasvs-id: V1.3.2
+  cwe: 657
+  rationale: "Gap: design-level decisions need documentation to be verifiable"
+
+new-V1.3.3:
+  action: add
+  tcasvs-id: V1.3.3
+  cwe: 284
+  rationale: "Gap: plugin architectures are common in thick clients (IDEs, browsers, media tools) and high-risk"
+
+new-V1.3.4:
+  action: add
+  tcasvs-id: V1.3.4
+  cwe: 494
+  rationale: "Gap: update architecture decisions (V1) distinct from implementation testing (V2.3)"
+
+new-V1.3.5:
+  action: add
+  tcasvs-id: V1.3.5
+  cwe: 693
+  rationale: "Gap: unique thick-client constraint — the platform itself is untrusted; L3 only for high-assurance apps"
+
+new-V1.4.1:
+  action: add
+  tcasvs-id: V1.4.1
+  cwe: 1059
+  rationale: "Gap: thick clients have large, diverse attack surfaces that must be explicitly enumerated"
+
+new-V1.4.2:
+  action: add
+  tcasvs-id: V1.4.2
+  cwe: 306
+  rationale: "Gap: knowing who can reach each interface is essential for thick-client security"
+
+new-V1.4.3:
+  action: add
+  tcasvs-id: V1.4.3
+  cwe: 693
+  rationale: "Gap: original TASVS-ARCH was generic; must require thick-client-specific threat coverage"
+
+new-V1.4.4:
+  action: add
+  tcasvs-id: V1.4.4
+  cwe: 1053
+  rationale: "Gap: attack surface management is ongoing, not one-time"
+
+tasvs-code-1-1:
+  action: drop
+  tcasvs-id: null
+  notes: "Not a verifiable requirement; deferral to ASVS is a project-level note, not a control. Documented in chapter introduction instead"
+
+tasvs-code-2-1:
+  action: move
+  tcasvs-id: V2.1.7
+  cwe: 345
+  notes: Build/release concern; already covered in V2.1.7. Level changed from L3-only to L2+ (signing is baseline for distribution)
+
+tasvs-code-2-2:
+  action: rename
+  tcasvs-id: V4.4.1
+  cwe: 354
+  notes: Reworded to be specific about mechanism and failure mode; moved to L2+
+
+tasvs-code-2-3:
+  action: rename
+  tcasvs-id: V4.4.2
+  cwe: 693
+  notes: Kept at L3; anti-tamper is defence-in-depth for high-assurance deployments
+
+tasvs-code-2-4:
+  action: move
+  tcasvs-id: V2.1.3
+  cwe: 489
+  notes: Build configuration concern; already covered by V2.1.3 + V2.1.6 (debug symbols)
+
+tasvs-code-2-5:
+  action: move
+  tcasvs-id: V2.2.1
+  cwe: 120
+  notes: Compiler flags are build-time; already covered in V2.2.1-2.2.5
+
+tasvs-code-3-1:
+  action: move
+  tcasvs-id: V2.1.4
+  cwe: 829
+  notes: Supply chain concern; already covered by V2.1.4 + V2.1.5 (SBOM)
+
+tasvs-code-3-2:
+  action: rename
+  tcasvs-id: V4.6.1
+  cwe: 209
+  notes: "Reworded from \"search for\" (testing activity) to verifiable runtime behaviour"
+
+tasvs-code-3-3:
+  action: rename
+  tcasvs-id: V4.6.2
+  cwe: 1078
+  notes: Kept as verification activity; L2+ since binary analysis requires tooling investment
+
+tasvs-code-3-4:
+  action: rename
+  tcasvs-id: V4.6.3
+  cwe: 1078
+  notes: Reworded for specificity; L1 baseline since modern SAST is accessible
+
+tasvs-code-3-5:
+  action: rename
+  tcasvs-id: V4.6.4
+  cwe: 657
+  notes: Reworded; moved to L2+ as a maturity requirement
+
+tasvs-code-3-6:
+  action: rename
+  tcasvs-id: V4.6.5
+  cwe: 561
+  notes: Reworded for specificity; L2+ maturity
+
+tasvs-code-4-1:
+  action: rename
+  tcasvs-id: V4.1.1
+  cwe: 94
+  notes: Reworded; added concrete mitigations
+
+tasvs-code-4-2:
+  action: rename
+  tcasvs-id: V4.1.2
+  cwe: 78
+  notes: Reworded; aligned with ASVS 1.2.5; added allowlist guidance
+
+tasvs-code-4-3:
+  action: rename
+  tcasvs-id: V4.1.3
+  cwe: 20
+  notes: Reworded for clarity
+
+tasvs-code-4-4:
+  action: rename
+  tcasvs-id: V4.3.1
+  cwe: 611
+  notes: Moved to V4.3 (deserialization); expanded to include DTD and XInclude
+
+tasvs-code-4-5:
+  action: rename
+  tcasvs-id: V4.2.1
+  cwe: 120
+  notes: Reworded; aligned with ASVS 1.4.1 but elevated to L1 for thick clients
+
+tasvs-code-4-6:
+  action: rename
+  tcasvs-id: V4.2.2
+  cwe: 134
+  notes: Reworded for precision; added compile-time constant guidance
+
+tasvs-code-4-7:
+  action: rename
+  tcasvs-id: V4.2.3
+  cwe: 190
+  notes: Reworded; added underflow and truncation; elevated to L1 for thick clients
+
+tasvs-code-4-8:
+  action: rename
+  tcasvs-id: V4.3.2
+  cwe: 502
+  notes: "Reworded; made mechanism explicit; removed \"encryption\" (that's V5 territory)"
+
+tasvs-code-4-9:
+  action: rename
+  tcasvs-id: V4.3.3
+  cwe: 502
+  notes: Reworded; aligned with ASVS 1.5.2; added concrete safe patterns
+
+tasvs-code-4-10:
+  action: rename
+  tcasvs-id: V4.1.4
+  cwe: 78
+  notes: Reworded; added fully-qualified paths; combines with CODE-7.1 concern
+
+tasvs-code-4-11:
+  action: rename
+  tcasvs-id: V4.1.5
+  cwe: 22
+  notes: Reworded; made ZipSlip and null byte explicit; aligned with ASVS 5.3.2/5.3.3
+
+tasvs-code-4-12:
+  action: rename
+  tcasvs-id: V4.2.4
+  cwe: 416
+  notes: Reworded; added specific vulnerability types; elevated to L1 for thick clients
+
+tasvs-code-5-1:
+  action: move
+  tcasvs-id: V3.2.1
+  cwe: 200
+  notes: "Moved to V3; \"sensitive data in UI\" is a data protection concern"
+
+tasvs-code-5-2:
+  action: rename
+  tcasvs-id: V4.5.1
+  cwe: 451
+  notes: Reworded for specificity; concrete examples of harm
+
+tasvs-code-5-3:
+  action: rename
+  tcasvs-id: V4.5.2
+  cwe: 657
+  notes: "Reworded; made \"common security advice\" concrete"
+
+tasvs-code-5-4:
+  action: move
+  tcasvs-id: V2.4.6
+  cwe: 265
+  notes: Architecture/deployment concern; already covered in V2.4.6
+
+tasvs-code-5-5:
+  action: rename
+  tcasvs-id: V4.1.6
+  cwe: 434
+  notes: Reworded; made thick-client file parsing threat explicit
+
+tasvs-code-5-6:
+  action: rename
+  tcasvs-id: V4.5.3
+  cwe: 939
+  notes: Reworded; expanded to cover parameter validation and user confirmation
+
+tasvs-code-6-1:
+  action: rename
+  tcasvs-id: V4.6.6
+  cwe: 120
+  notes: Reworded; made target interfaces specific; moved to L2+ (requires tooling)
+
+tasvs-code-6-2:
+  action: rename
+  tcasvs-id: V4.6.7
+  cwe: 120
+  notes: Reworded; kept at L3; high-maturity verification activity
+
+tasvs-code-7-1:
+  action: move
+  tcasvs-id: V2.3.5
+  cwe: 427
+  notes: Already covered in V2.3.5; DLL/EXE hijacking is a deployment concern
+
+tasvs-code-7-2:
+  action: rename
+  tcasvs-id: V4.2.5
+  cwe: 59
+  notes: Reworded; added concrete mitigations; assigned L1 (symlink attacks are common on multi-user systems)
+
+new-V4.1.7:
+  action: add
+  tcasvs-id: V4.1.7
+  cwe: 20
+  rationale: "Gap: IPC is a primary thick-client input vector often treated as \"trusted\""
+
+new-V4.1.8:
+  action: add
+  tcasvs-id: V4.1.8
+  cwe: 94
+  rationale: "Gap: dynamic code execution in thick clients enables code injection via local vectors"
+
+new-V4.2.6:
+  action: add
+  tcasvs-id: V4.2.6
+  cwe: 121
+  rationale: "Gap: verification that build mitigations are actually present in shipped binaries"
+
+new-V4.2.7:
+  action: add
+  tcasvs-id: V4.2.7
+  cwe: 122
+  rationale: "Gap: heap exploitation is a major thick-client attack vector"
+
+new-V4.3.4:
+  action: add
+  tcasvs-id: V4.3.4
+  cwe: 502
+  rationale: "Gap: IPC-based deserialization attacks between local processes"
+
+new-V4.4.3:
+  action: add
+  tcasvs-id: V4.4.3
+  cwe: 693
+  rationale: "Gap: anti-debugging for high-assurance clients; L3 defence-in-depth"
+
+new-V4.5.4:
+  action: add
+  tcasvs-id: V4.5.4
+  cwe: 829
+  rationale: "Gap: plugin architectures in thick clients are a major attack surface"
+
+new-V4.5.5:
+  action: add
+  tcasvs-id: V4.5.5
+  cwe: 20
+  rationale: "Gap: alternative input paths often bypass file-open validation logic"
+
+new-V4.6.8:
+  action: add
+  tcasvs-id: V4.6.8
+  cwe: 252
+  rationale: "Gap: unchecked return values in native code lead to null dereferences and undefined behaviour"
+
+tasvs-conf-1-1:
+  action: rename
+  tcasvs-id: V2.1.1
+  cwe: 657
+  notes: Reworded; added reproducibility and build environment integrity
+
+tasvs-conf-1-2:
+  action: rename
+  tcasvs-id: V2.2.1
+  cwe: 120
+  notes: Moved to Environment Hardening; reworded for clarity
+
+tasvs-conf-1-3:
+  action: rename
+  tcasvs-id: V2.1.2
+  cwe: 693
+  notes: Kept; kept L2/L3 restriction as per original
+
+tasvs-conf-1-4:
+  action: rename
+  tcasvs-id: V2.1.3
+  cwe: 489
+  notes: Reworded; explicit about test utilities and dev configs
+
+tasvs-conf-1-5:
+  action: rename
+  tcasvs-id: V2.1.4
+  cwe: 829
+  notes: Added integrity verification; aligns with ASVS 15.2.4
+
+tasvs-conf-1-6:
+  action: rename
+  tcasvs-id: V2.1.5
+  cwe: 1104
+  notes: Added transitive dependencies and release cadence; aligns with ASVS 15.1.2
+
+tasvs-conf-2-1:
+  action: rename
+  tcasvs-id: V2.4.1
+  cwe: 250
+  notes: Reworded for clarity; made IPC surface minimization explicit
+
+tasvs-conf-2-2:
+  action: rename
+  tcasvs-id: V2.4.2
+  cwe: 250
+  notes: "Reworded for precision; original \"Rule of 2\" kept"
+
+tasvs-conf-2-3:
+  action: rename
+  tcasvs-id: V2.4.3
+  cwe: 732
+  notes: Reworded; added explicit access types
+
+new-V2.1.6:
+  action: add
+  tcasvs-id: V2.1.6
+  cwe: 215
+  rationale: "Gap: debug symbols enable reverse engineering and info disclosure"
+
+new-V2.1.7:
+  action: add
+  tcasvs-id: V2.1.7
+  cwe: 345
+  rationale: "Gap: unsigned binaries allow tampering and impersonation"
+
+new-V2.1.8:
+  action: add
+  tcasvs-id: V2.1.8
+  cwe: 427
+  rationale: "Gap: supply chain attack vector; aligns with ASVS 15.2.4"
+
+new-V2.2.2:
+  action: add
+  tcasvs-id: V2.2.2
+  cwe: 119
+  rationale: "Gap: ASLR is a fundamental exploit mitigation for thick clients"
+
+new-V2.2.3:
+  action: add
+  tcasvs-id: V2.2.3
+  cwe: 119
+  rationale: "Gap: DEP prevents shellcode execution from stack/heap"
+
+new-V2.2.4:
+  action: add
+  tcasvs-id: V2.2.4
+  cwe: 691
+  rationale: "Gap: CFI blocks ROP/JOP exploitation techniques"
+
+new-V2.2.5:
+  action: add
+  tcasvs-id: V2.2.5
+  cwe: 119
+  rationale: "Gap: latest generation hardware mitigations; L3 only"
+
+new-V2.2.6:
+  action: add
+  tcasvs-id: V2.2.6
+  cwe: 693
+  rationale: "Gap: applications sometimes weaken their own protections"
+
+new-V2.3.1:
+  action: add
+  tcasvs-id: V2.3.1
+  cwe: 354
+  rationale: "Gap: installer tampering is a common thick-client supply chain attack"
+
+new-V2.3.2:
+  action: add
+  tcasvs-id: V2.3.2
+  cwe: 379
+  rationale: "Gap: temp-file race conditions during installation"
+
+new-V2.3.3:
+  action: add
+  tcasvs-id: V2.3.3
+  cwe: 494
+  rationale: "Gap: unsigned updates allow arbitrary code execution"
+
+new-V2.3.4:
+  action: add
+  tcasvs-id: V2.3.4
+  cwe: 295
+  rationale: "Gap: MITM on update channel enables code injection"
+
+new-V2.3.5:
+  action: add
+  tcasvs-id: V2.3.5
+  cwe: 427
+  rationale: "Gap: DLL sideloading is one of the most common thick-client attacks"
+
+new-V2.3.6:
+  action: add
+  tcasvs-id: V2.3.6
+  cwe: 269
+  rationale: "Gap: installers often request full admin unnecessarily"
+
+new-V2.4.4:
+  action: add
+  tcasvs-id: V2.4.4
+  cwe: 250
+  rationale: "Gap: services running as SYSTEM widen blast radius"
+
+new-V2.4.5:
+  action: add
+  tcasvs-id: V2.4.5
+  cwe: 732
+  rationale: "Gap: config tampering enables privilege escalation"
+
+new-V2.4.6:
+  action: add
+  tcasvs-id: V2.4.6
+  cwe: 265
+  rationale: "Gap: sandbox missing for risky thick-client components"
+
+new-V2.4.7:
+  action: add
+  tcasvs-id: V2.4.7
+  cwe: 732
+  rationale: "Gap: open IPC objects allow local privilege escalation"
+
+tasvs-crypto-1-1:
+  action: rename
+  tcasvs-id: V5.6.1
+  cwe: 326
+  notes: Moved to Transport section
+
+tasvs-crypto-2-1:
+  action: move
+  tcasvs-id: V5.5.1
+  cwe: 323
+  notes: Raised L1→L2; moved to Key Management
+
+tasvs-crypto-2-2:
+  action: rename
+  tcasvs-id: V5.4.1
+  cwe: 338
+  notes: "Strengthened: 128-bit entropy minimum"
+
+tasvs-crypto-2-3:
+  action: rename
+  tcasvs-id: V5.3.1
+  cwe: 327
+  notes: Added examples
+
+tasvs-crypto-2-4:
+  action: rename
+  tcasvs-id: V5.5.2
+  cwe: 321
+  notes: "Strengthened: binary extraction"
+
+tasvs-crypto-3-1:
+  action: move
+  tcasvs-id: V5.2.1
+  cwe: 310
+  notes: Raised L1→L2; moved to Implementation
+
+tasvs-crypto-3-2:
+  action: rename
+  tcasvs-id: V5.2.2
+  cwe: 327
+  notes: Moved to Implementation section
+
+new-V5.1.1:
+  action: add
+  tcasvs-id: V5.1.1
+  cwe: 320
+  rationale: "Gap: ASVS 11.1.1"
+
+new-V5.1.2:
+  action: add
+  tcasvs-id: V5.1.2
+  cwe: 311
+  rationale: "Gap: ASVS 11.1.2"
+
+new-V5.2.3:
+  action: add
+  tcasvs-id: V5.2.3
+  cwe: 327
+  rationale: "Gap: ASVS 11.2.2"
+
+new-V5.3.2:
+  action: add
+  tcasvs-id: V5.3.2
+  cwe: 327
+  rationale: "Gap: ASVS 11.3.1+11.3.2"
+
+new-V5.3.3:
+  action: add
+  tcasvs-id: V5.3.3
+  cwe: 326
+  rationale: "Gap: ASVS 11.2.3"
+
+new-V5.4.2:
+  action: add
+  tcasvs-id: V5.4.2
+  cwe: 332
+  rationale: "Gap: ASVS 11.5.2"
+
+new-V5.5.3:
+  action: add
+  tcasvs-id: V5.5.3
+  cwe: 312
+  rationale: "Gap: thick-client-specific"
+
+new-V5.5.4:
+  action: add
+  tcasvs-id: V5.5.4
+  cwe: 316
+  rationale: "Gap: thick-client-specific"
+
+new-V5.6.2:
+  action: add
+  tcasvs-id: V5.6.2
+  cwe: 295
+  rationale: "Gap: thick-client-specific"
+
+new-V5.6.3:
+  action: add
+  tcasvs-id: V5.6.3
+  cwe: 295
+  rationale: "Gap: thick-client-specific"
+
+new-V5.6.4:
+  action: add
+  tcasvs-id: V5.6.4
+  cwe: 494
+  rationale: "Gap: thick-client-specific"
+
+tasvs-network-1-1:
+  action: rename
+  tcasvs-id: V6.3.1
+  cwe: 319
+  notes: Reworded for clarity; moved to Data Leakage section
+
+tasvs-network-1-2:
+  action: rename
+  tcasvs-id: V6.1.1
+  cwe: 319
+  notes: Core baseline requirement
+
+tasvs-network-4-4:
+  action: rename
+  tcasvs-id: V6.2.1
+  cwe: 489
+  notes: "Strengthened: added authentication requirement"
+
+new-V6.1.2:
+  action: add
+  tcasvs-id: V6.1.2
+  cwe: 757
+  rationale: "Gap: thick clients connect to multiple endpoints; mirrors ASVS 12.2.1"
+
+new-V6.1.3:
+  action: add
+  tcasvs-id: V6.1.3
+  cwe: 319
+  rationale: "Gap: thick clients often use non-HTTP protocols"
+
+new-V6.2.2:
+  action: add
+  tcasvs-id: V6.2.2
+  cwe: 668
+  rationale: "Gap: common misconfiguration in thick clients"
+
+new-V6.2.3:
+  action: add
+  tcasvs-id: V6.2.3
+  cwe: 306
+  rationale: "Gap: unauthenticated local services enable privilege escalation"
+
+new-V6.3.2:
+  action: add
+  tcasvs-id: V6.3.2
+  cwe: 598
+  rationale: "Gap: common leak vectors in thick clients with embedded browsers"
+
+new-V6.3.3:
+  action: add
+  tcasvs-id: V6.3.3
+  cwe: 200
+  rationale: "Gap: information disclosure via network traffic"
+
+new-V6.4.1:
+  action: add
+  tcasvs-id: V6.4.1
+  cwe: 420
+  rationale: "Gap: thick clients often use IPC with no access control"
+
+new-V6.4.2:
+  action: add
+  tcasvs-id: V6.4.2
+  cwe: 345
+  rationale: "Gap: local MITM between thick client components"
+
+new-V6.5.1:
+  action: add
+  tcasvs-id: V6.5.1
+  cwe: 294
+  rationale: "Gap: license bypass via replay is common thick-client attack"
+
+new-V6.5.2:
+  action: add
+  tcasvs-id: V6.5.2
+  cwe: 636
+  rationale: "Gap: offline bypass of license checks"
+
+tasvs-storage-1-6:
+  action: rename
+  tcasvs-id: V3.1.1
+  cwe: 922
+  notes: Reworded to align with ASVS 14.1.1/14.1.2; added classification duty; moved to L2 baseline (classification is a design-time activity)
+
+tasvs-storage-1-1:
+  action: rename
+  tcasvs-id: V3.2.1
+  cwe: 798
+  notes: "Reworded for clarity; broadened to \"application data files\""
+
+tasvs-storage-1-2:
+  action: rename
+  tcasvs-id: V3.2.2
+  cwe: 798
+  notes: Reworded; added plist for macOS coverage
+
+tasvs-storage-1-3:
+  action: rename
+  tcasvs-id: V3.2.3
+  cwe: 532
+  notes: Reworded for precision; explicit about session tokens
+
+tasvs-storage-1-5:
+  action: rename
+  tcasvs-id: V3.2.4
+  cwe: 798
+  notes: Reworded; made the threat model explicit (string extraction)
+
+tasvs-storage-1-7:
+  action: rename
+  tcasvs-id: V3.3.1
+  cwe: 522
+  notes: Reworded; specified concrete secure storage APIs
+
+tasvs-storage-1-6:
+  action: merge
+  tcasvs-id: V3.3.2
+  cwe: 311
+  notes: Derived from STORAGE-1.6 encryption requirement; refocused as a storage control (crypto details deferred to V5)
+
+tasvs-storage-1-4:
+  action: rename
+  tcasvs-id: V3.4.1
+  cwe: 316
+  notes: "Reworded; made \"explicitly zeroed\" actionable"
+
+tasvs-storage-2-1:
+  action: move
+  tcasvs-id: V2.3.5
+  cwe: 427
+  notes: "Moved to V2.3.5 — this is a code integrity / deployment issue, not data storage. V2.3.5 already covers DLL replacement and proxying"
+
+tasvs-storage-2-2:
+  action: move
+  tcasvs-id: V2.3.5
+  cwe: 427
+  notes: Merged with STORAGE-2.1 into V2.3.5; no new requirement needed
+
+new-V3.1.2:
+  action: add
+  tcasvs-id: V3.1.2
+  cwe: 922
+  rationale: "Gap: no retention/deletion policy in old standard; aligns with GDPR minimization principle"
+
+new-V3.2.5:
+  action: add
+  tcasvs-id: V3.2.5
+  cwe: 311
+  rationale: "Gap: thick clients often use local DBs with no protection"
+
+new-V3.2.6:
+  action: add
+  tcasvs-id: V3.2.6
+  cwe: 530
+  rationale: "Gap: backup files often contain unprotected copies of sensitive data"
+
+new-V3.3.3:
+  action: add
+  tcasvs-id: V3.3.3
+  cwe: 522
+  rationale: "Gap: old standard acknowledged the problem but didn't specify the solution (platform APIs)"
+
+new-V3.3.4:
+  action: add
+  tcasvs-id: V3.3.4
+  cwe: 321
+  rationale: "Gap: hardware key protection for high-assurance deployments"
+
+new-V3.4.2:
+  action: add
+  tcasvs-id: V3.4.2
+  cwe: 316
+  rationale: "Gap: swap/pagefile exposure is a real thick-client threat"
+
+new-V3.4.3:
+  action: add
+  tcasvs-id: V3.4.3
+  cwe: 200
+  rationale: "Gap: clipboard is accessible to all processes; common data leak vector"
+
+new-V3.4.4:
+  action: add
+  tcasvs-id: V3.4.4
+  cwe: 215
+  rationale: "Gap: crash dumps often contain full process memory including secrets"
+
+new-V3.5.1:
+  action: add
+  tcasvs-id: V3.5.1
+  cwe: 459
+  rationale: "Gap: temp files persist after process exit and are readable by other users"
+
+new-V3.5.2:
+  action: add
+  tcasvs-id: V3.5.2
+  cwe: 377
+  rationale: "Gap: shared temp dirs allow symlink attacks and data theft"
+
+new-V3.5.3:
+  action: add
+  tcasvs-id: V3.5.3
+  cwe: 459
+  rationale: "Gap: residual data persists after logout/uninstall"
+
+new-V3.5.4:
+  action: add
+  tcasvs-id: V3.5.4
+  cwe: 319
+  rationale: "Gap: thick clients sometimes pass secrets via files or env vars between components"
+

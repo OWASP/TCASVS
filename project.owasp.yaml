@@ -1,22 +1,28 @@
 audience:
   - builder
+  - defender
+  - breaker
 leaders:
   - name: Dave Hanson
     email: Dave.hanson@owasp.org
+  - name: Samuel Aubert
+    email: samuel.aubert@owasp.org
 level: 2
 license:
   - CC-BY-SA-4.0
 name: OWASP Thick Client Application Security Verification Standard
-pitch: The OWASP Thick Client Application Security Verification Standard (TASVS) Project aims to establish an open standard for securing thick client applications. This project provides a comprehensive framework for designing, building, and testing technical application security controls. The TASVS Project fills the gap between the OWASP Application Security Verification Standard (ASVS) for web applications and the Mobile Application Security Verification Standard (MASVS). While the MASVS can be applied to thick client testing, it is not an ideal fit. The TASVS Project seeks to create a more suitable standard for these scenarios.
+pitch: The OWASP Thick Client Application Security Verification Standard (TCASVS) provides a comprehensive set of security requirements for designing, building, and testing thick client applications. It fills the gap between the OWASP ASVS for web applications and the MASVS for mobile applications, providing purpose-built requirements for desktop and native applications that execute outside a browser sandbox.
 repositories:
-  - name: www-project-thick-client-application-security-verification-standard
-    url: https://github.com/OWASP/www-project-thick-client-application-security-verification-standard
+  - name: TCASVS
+    url: https://github.com/OWASP/TCASVS
     description: OWASP Thick Client Application Security Verification Standard
 tags:
+  - TCASVS
   - TASVS
   - ASVS
   - MASVS
-  - SAMM
+  - thick-client
+  - desktop-security
   - OWASP
 type: documentation
 website: https://owasp.org/www-project-thick-client-application-security-verification-standard
