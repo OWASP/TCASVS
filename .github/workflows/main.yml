@@ -8,11 +8,13 @@ on:
       - '5.0/**'
       - 'docker/**'
       - 'Makefile'
+      - '.github/workflows/main.yml'
   pull_request:
     paths:
       - '5.0/**'
       - 'docker/**'
       - 'Makefile'
+      - '.github/workflows/main.yml'
 
 jobs:
   build:
