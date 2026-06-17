@@ -8,11 +8,13 @@ on:
       - '5.0/**'
       - 'docker/**'
       - 'Makefile'
+      - '.github/workflows/main.yml'
   pull_request:
     paths:
       - '5.0/**'
       - 'docker/**'
       - 'Makefile'
+      - '.github/workflows/main.yml'
 
 jobs:
   build:
@@ -53,7 +55,7 @@ jobs:
       run: |
         LATEST_TAG=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
         if [ -z "$LATEST_TAG" ] || [ "$LATEST_TAG" == "null" ]; then
-          LATEST_TAG="v5.0.0"
+          LATEST_TAG=""
         fi
         echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
 
@@ -62,10 +64,19 @@ jobs:
       if: github.event_name == 'push'
       run: |
         LATEST_TAG=${{ env.LATEST_TAG }}
-        LATEST_VERSION=${LATEST_TAG#v}
-        IFS='.' read -r major minor patch <<< "$LATEST_VERSION"
-        NEW_VERSION="$major.$minor.$((patch + 1))"
-        NEW_TAG="v$NEW_VERSION"
+
+        # TCASVS release line is anchored to ASVS-style v5.x tags.
+        # Ignore legacy TASVS tags (for example v1.8.x) when deriving the next tag.
+        if [[ "$LATEST_TAG" =~ ^v5\.([0-9]+)\.([0-9]+)$ ]]; then
+          major=5
+          minor=${BASH_REMATCH[1]}
+          patch=${BASH_REMATCH[2]}
+          NEW_VERSION="$major.$minor.$((patch + 1))"
+          NEW_TAG="v$NEW_VERSION"
+        else
+          NEW_TAG="v5.0.0"
+        fi
+
         echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
     - name: Create GitHub Release
