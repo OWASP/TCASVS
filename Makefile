@@ -9,6 +9,7 @@
 #   make 5.0 FORMATS=pdf     # build only the PDF
 #   make verify              # parse-check the requirements
 #   make 5.0-clean           # remove build/ and dist/
+#
 
 FORMATS ?= all
 LANGS ?= en
