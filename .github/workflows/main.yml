@@ -79,69 +79,22 @@ jobs:
 
         echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
+    - name: Stage release assets
+      if: github.event_name == 'push'
+      run: |
+        mkdir -p release-assets
+        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.pdf release-assets/TCASVS-${{ env.NEW_TAG }}.pdf
+        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.docx release-assets/TCASVS-${{ env.NEW_TAG }}.docx
+        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.json release-assets/TCASVS-${{ env.NEW_TAG }}.json
+        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.csv release-assets/TCASVS-${{ env.NEW_TAG }}.csv
+        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.cdx.json release-assets/TCASVS-${{ env.NEW_TAG }}.cdx.json
+
     - name: Create GitHub Release
-      id: create_release
       if: github.event_name == 'push'
-      uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ env.NEW_TAG }}
-        release_name: TCASVS ${{ env.NEW_TAG }}
-        draft: false
-        prerelease: false
-
-    - name: Upload PDF
-      if: github.event_name == 'push'
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.pdf
-        asset_name: TCASVS-${{ env.NEW_TAG }}.pdf
-        asset_content_type: application/pdf
-
-    - name: Upload DOCX
-      if: github.event_name == 'push'
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.docx
-        asset_name: TCASVS-${{ env.NEW_TAG }}.docx
-        asset_content_type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
-
-    - name: Upload JSON
-      if: github.event_name == 'push'
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.json
-        asset_name: TCASVS-${{ env.NEW_TAG }}.json
-        asset_content_type: application/json
-
-    - name: Upload CSV
-      if: github.event_name == 'push'
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.csv
-        asset_name: TCASVS-${{ env.NEW_TAG }}.csv
-        asset_content_type: text/csv
-
-    - name: Upload CycloneDX
-      if: github.event_name == 'push'
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.cdx.json
-        asset_name: TCASVS-${{ env.NEW_TAG }}.cdx.json
-        asset_content_type: application/json
+      run: |
+        gh release create "${{ env.NEW_TAG }}" \
+          --title "TCASVS ${{ env.NEW_TAG }}" \
+          --notes "Automated release ${{ env.NEW_TAG }}" \
+          release-assets/*
