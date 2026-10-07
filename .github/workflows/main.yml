@@ -94,7 +94,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release create "${{ env.NEW_TAG }}" \
-          --title "TCASVS ${{ env.NEW_TAG }}" \
-          --notes "Automated release ${{ env.NEW_TAG }}" \
+        gh release create "$NEW_TAG" \
+          --title "TCASVS $NEW_TAG" \
+          --notes "Automated release $NEW_TAG" \
           release-assets/*
