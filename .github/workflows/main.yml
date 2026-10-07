@@ -83,11 +83,11 @@ jobs:
       if: github.event_name == 'push'
       run: |
         mkdir -p release-assets
-        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.pdf release-assets/TCASVS-${{ env.NEW_TAG }}.pdf
-        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.docx release-assets/TCASVS-${{ env.NEW_TAG }}.docx
-        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.json release-assets/TCASVS-${{ env.NEW_TAG }}.json
-        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.csv release-assets/TCASVS-${{ env.NEW_TAG }}.csv
-        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.cdx.json release-assets/TCASVS-${{ env.NEW_TAG }}.cdx.json
+        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.pdf "release-assets/TCASVS-${NEW_TAG}.pdf"
+        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.docx "release-assets/TCASVS-${NEW_TAG}.docx"
+        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.json "release-assets/TCASVS-${NEW_TAG}.json"
+        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.csv "release-assets/TCASVS-${NEW_TAG}.csv"
+        cp ./5.0/dist/OWASP_Thick_Client_Application_Security_Verification_Standard_5.0.0_en.cdx.json "release-assets/TCASVS-${NEW_TAG}.cdx.json"
 
     - name: Create GitHub Release
       if: github.event_name == 'push'
